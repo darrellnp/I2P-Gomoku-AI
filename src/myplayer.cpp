@@ -39,7 +39,7 @@ enum SPOT_STATE {
     WHITE = 2
     };
 static const int SIZE = 15;
-const int MAXDEPTH = 4;
+const int MAXDEPTH = 5;
 int player_game;
 
 class GomokuBoard {
@@ -253,12 +253,16 @@ public:
                         } 
                     }
                 
-                    if(count == 3){
-                    val++;
-                    }else if(count == 4){
-                    val+=10;
-                    }else if (count == 5){
+                    if(count == 2)
+                    {
+                        val+= 50;
+                    }
+                    else if(count == 3){
                     val+=100;
+                    }else if(count == 4){
+                    val+=250;
+                    }else if (count == 5){
+                    val+=500;
                     }
                     count = 1;
                     it = 1;
@@ -275,13 +279,16 @@ public:
                         
                         } 
                     }
-                
-                    if(count == 3){
-                    val++;
-                    }else if(count == 4){
-                    val+=10;
-                    }else if (count == 5){
+                    if(count == 2)
+                    {
+                        val+= 50;
+                    }
+                    else if(count == 3){
                     val+=100;
+                    }else if(count == 4){
+                    val+=250;
+                    }else if (count == 5){
+                    val+=500;
                     }
                     count = 1;
                     it = 1;
@@ -298,12 +305,16 @@ public:
                         }
                     }
                 
-                    if(count == 3){
-                    val++;
-                    }else if(count == 4){
-                    val+=10;
-                    }else if (count == 5){
+                   if(count == 2)
+                    {
+                        val+= 50;
+                    }
+                    else if(count == 3){
                     val+=100;
+                    }else if(count == 4){
+                    val+=250;
+                    }else if (count == 5){
+                    val+=500;
                     }
                     count = 1;
                     it = 1;
@@ -320,12 +331,16 @@ public:
                     }
                 
                     // dapet count buat ngitung tiap disc, jadi count adalah isi count = byk item yg didapat
-                    if(count == 3){
-                    val++;
-                    }else if(count == 4){
-                    val+=10;
-                    }else if (count == 5){
+                    if(count == 2)
+                    {
+                        val+= 50;
+                    }
+                    else if(count == 3){
                     val+=100;
+                    }else if(count == 4){
+                    val+=250;
+                    }else if (count == 5){
+                    val+=500;
                     }
                     count = 1;
                     it = 1;
@@ -349,11 +364,11 @@ public:
                     
                     } 
                     if(count == 3){
-                    val--;
+                    val-=105;
                     }else if(count == 4){
-                    val-=10;
+                    val-=255;
                     }else if (count == 5){
-                    val-=100;
+                    val-=550;
                     }
                     count = 1;
                     it = 1; 
@@ -366,11 +381,11 @@ public:
                     it++;
                     } 
                     if(count == 3){
-                    val--;
+                    val-=105;
                     }else if(count == 4){
-                    val-=10;
+                    val-=255;
                     }else if (count == 5){
-                    val-=100;
+                    val-=550;
                     }
                     count = 1;
                     it = 1;
@@ -385,11 +400,11 @@ public:
                     it++;
                     }
                     if(count == 3){
-                    val--;
+                    val-=105;
                     }else if(count == 4){
-                    val-=10;
+                    val-=255;
                     }else if (count == 5){
-                    val-=100;
+                    val-=550;
                     }
                     count = 1;
                     it = 1;
@@ -403,11 +418,11 @@ public:
                     }
                     // dapet count buat ngitung tiap disc, jadi count adalah isi count = byk item yg didapat
                     if(count == 3){
-                    val--;
+                    val-=105;
                     }else if(count == 4){
-                    val-=10;
+                    val-=255;
                     }else if (count == 5){
-                    val-=100;
+                    val-=550;
                     }
                     count = 1;
                     it = 1;
@@ -446,7 +461,7 @@ int MiniMax(const GomokuBoard now, int depth, int A, int B, int player)
 
     if (player == player_game)  // player's turn (maximize value)
     {
-        int value = -1000;
+        int value = -1000000;
         for (int i = 0; i < n_valid_spots; i++)
         {
             GomokuBoard next(now);
@@ -469,7 +484,7 @@ int MiniMax(const GomokuBoard now, int depth, int A, int B, int player)
     }
     else if (player == 3 - player_game)  // enemy's turn (minimize value)
     {
-        int value = 1000;
+        int value = 1000000;
         for (int i = 0; i < n_valid_spots; i++)
         {
             GomokuBoard next(now);
